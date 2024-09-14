@@ -21,7 +21,7 @@ app:
   environment: dev
 
 server:
-  port: 8888
+  port: 8887
 
 logging:
   level:
