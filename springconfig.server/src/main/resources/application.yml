@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: config-server
+  datasource:
+    url: jdbc:postgresql://localhost:5543/cloud_config_sever?currentSchema=config_schema
+    username: pet_app_user
+    password: pet_app_user
+    driver-class-name: org.postgresql.Driver
+
+  profiles:
+    include: jdbc
+  cloud:
+    config:
+      server:
+        jdbc:
+          order: 1
+          sql: SELECT PROP_KEY, VALUE from PROPERTIES where APPLICATION=? and PROFILE=? and LABEL=?
+
+app:
+  service-name: dev
+  environment: dev
+
+server:
+  port: 8888
+
+logging:
+  level:
+    org.flywaydb: DEBUG
